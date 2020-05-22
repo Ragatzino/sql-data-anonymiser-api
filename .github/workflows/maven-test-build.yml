@@ -1,0 +1,15 @@
+name: Maven Test & Build
+on: [push]
+
+jobs: 
+  build: 
+    name: Mvn test build
+    runs-on: ubuntu-latest
+    steps:
+      - name: mvn test, mvn build
+        uses: docker://maven:3.6.3-openjdk-14-slim
+        run:  mvn build
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          path: target
